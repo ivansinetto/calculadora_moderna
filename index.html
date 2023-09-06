@@ -35,7 +35,7 @@
         }
 
         #tela {
-            background-color: rgba(22, 1, 1, 0.192);;
+            background-color: rgba(22, 1, 1, 0.192);
             color: #0c0331a2;
             border: none;
             font-size: 2.8em;
@@ -63,7 +63,35 @@
         }
 
         footer {
-            display: block;
+            background-color: rgba(22, 1, 1, 0.295);
+            color: azure;
+            margin-top: 20px;
+            width: 285px;
+            border-radius: 8px;
+        }
+
+        footer > p {
+            text-align: center;
+        }
+
+        footer > p > a {
+            text-decoration: none;
+            color: #170370;
+        }
+
+        footer > p > a:hover{
+            color: #f208fa;
+        }
+
+        footer > a {
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            color: #170370;
+        }
+
+        footer > a:hover {
+            color: #f208fa;
         }
     </style>
 </head>
@@ -94,9 +122,31 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <p>Desenvolvido por <a href="https://github.com/ivansinetto" target="_blank">Ivan Neto</a></p>
+            <a href="https://github.com/ivansinetto/calculadora_moderna" target="_blank">Repositório disponível no GitHub</a>
+        </footer>
     </div>
     <script>
         let tela = ''
+
+        function capturarTeclado(event) {
+            const tecla = event.key;
+            
+            if (/[0-9+\-*/.=]/.test(tecla)) {
+                mostrarNaTela(tecla);
+            }
+            
+            if (tecla === 'Enter') {
+                resultado();
+            }
+
+            if (tecla === 'Escape') {
+                limparTela();
+            }
+        }
+
+        document.addEventListener('keydown', capturarTeclado);
 
         function mostrarNaTela(value) {
             tela += value
